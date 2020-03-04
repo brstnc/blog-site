@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::group(['namespace' => 'Front'], function (){
     Route::get('/', 'HomeController@index')->name('index');
+    Route::get('/blog_detail/{id}', 'BlogController@blog_detail')->name('blog_detail');
+    Route::get('/all_articles/{id}', 'BlogController@all_articles')->name('all_articles');
+    Route::get('/category_articles/{id}', 'BlogController@category_articles')->name('category_articles');
 });
 
 Route::group(['prefix' => 'panel','middleware' => 'auth', 'namespace' => 'Panel'], function () {

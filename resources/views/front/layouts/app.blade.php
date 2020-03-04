@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{asset('front/css/responsive.css')}}">
 </head>
 <body>
+@php
+    $categories = \App\Models\Category::all();
+@endphp
 <div class="wrapper">
     <header class="header">
         <div class="container">
@@ -29,6 +32,7 @@
                     <div class="menu">
                         <ul>
                             <li class="active"><a href="{{route('index')}}">Home</a></li>
+                            <li><a href="{{route('category_articles', $categories->first()->id)}}">Kategoriler</a></li>
                         </ul>
                     </div>
                 </div>
