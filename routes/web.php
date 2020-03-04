@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-
-Route::get('/', 'Front\HomeController@index')->name('index');
+Route::group(['namespace' => 'Front'], function (){
+    Route::get('/', 'HomeController@index')->name('index');
+});
 
 Route::group(['prefix' => 'panel','middleware' => 'auth', 'namespace' => 'Panel'], function () {
     Route::get('/', 'HomeController@index')->name('panel.index');

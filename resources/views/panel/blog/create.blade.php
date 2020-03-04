@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label for="title">Blog Başlık</label>
                     <input type="text" class="form-control" name="title" id="title"
-                           placeholder="Bog Başlık">
+                           placeholder="Bog Başlık" value="{{old('title')}}">
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label for="content">İçerik</label>
                     <textarea type="text" class="form-control" name="content" id="content"
-                              placeholder="Blog İçeriği"></textarea>
+                              placeholder="Blog İçeriği">{{old('content')}}</textarea>
                 </div>
             </div>
         </div>
