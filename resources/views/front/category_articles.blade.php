@@ -10,6 +10,11 @@
                             <h2>{{$category->name}} Kategorisindeki Tüm Yazılar</h2>
                         </div>
                         @foreach($category_articles as $article)
+                            @php
+                                $content = $article->Blog->content;
+                                    if (strlen($content) > 500)
+                                        $content = substr($content,0,500).'...'
+                            @endphp
                             <div class="col-md-4">
                                 <div class="single-post">
                                     <a href="{{route('blog_detail', $article->Blog->id)}}">
@@ -20,7 +25,7 @@
                                         <h4><span>Yazar: <span
                                                         class="author-name">{{$article->Blog->User->name}}</span></span></h4>
                                     </a>
-                                    <p>{{$article->Blog->content}}</p>
+                                    <p>{{$content}}</p>
                                     <h4><span>{{$article->Blog->created_at}}</span></h4>
                                 </div>
                             </div>

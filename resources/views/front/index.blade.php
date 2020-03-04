@@ -1,5 +1,10 @@
 @extends('front.layouts.app')
 @section('content')
+    @php
+        $random_content = $random_blog[0]->content;
+            if (strlen($random_content) > 850)
+                $random_content = substr($random_content,0,850).'...'
+    @endphp
     <section class="blog-post-area">
         <div class="container">
             <div class="row">
@@ -11,7 +16,7 @@
                             </div>
                             <div class="big-text">
                                 <h3><a href="{{route('blog_detail', $random_blog[0]->id)}}">{{$random_blog[0]->title}}</a></h3>
-                                <p>{{$random_blog[0]->content}}</p>
+                                <p>{{$random_content}}</p>
                                 <h4><span class="date">{{$random_blog[0]->created_at}}</span>
                                     <a href="{{route('all_articles', $random_blog[0]->user_id)}}">
                                     <span class="author">Yazar: <span
@@ -22,6 +27,11 @@
                         </div>
                     </div>
                     @foreach($blogs as $blog)
+                        @php
+                        $content = $blog[0]->content;
+                            if (strlen($content) > 500)
+                                $content = substr($content,0,500).'...'
+                        @endphp
                         <div class="col-md-3">
                             <div class="single-post">
                                 <a href="{{route('blog_detail', $blog[0]->id)}}">
@@ -32,7 +42,7 @@
                                 <h4><span>Yazar: <span class="author-name">{{$blog[0]->User->name}}</span></span>
                                 </h4>
                                 </a>
-                                <p>{{$blog[0]->content}}</p>
+                                <p>{{$content}}</p>
                                 <h4><span>{{$blog[0]->created_at}}</span></h4>
                             </div>
                         </div>

@@ -17,7 +17,7 @@
 </head>
 <body>
 @php
-    $categories = \App\Models\Category::all();
+    $categories = \App\Models\Category::inRandomOrder()->take(5)->get();
 @endphp
 <div class="wrapper">
     <header class="header">
@@ -31,8 +31,10 @@
                 <div class="col-md-10">
                     <div class="menu">
                         <ul>
-                            <li class="active"><a href="{{route('index')}}">Home</a></li>
-                            <li><a href="{{route('category_articles', $categories->first()->id)}}">Kategoriler</a></li>
+                            <li class="active"><a href="{{route('index')}}">Ana Sayfa</a></li>
+                            @foreach($categories as $category)
+                                <li><a href="{{route('category_articles', $category->id)}}">{{$category->name}}</a></li>
+                           @endforeach
                         </ul>
                     </div>
                 </div>
@@ -49,11 +51,10 @@
                             <div class="col-md-9">
                                 <div class="footer-menu">
                                     <ul>
-                                        <li class="active"><a href="#">Home</a></li>
-                                        <li><a href="#">lifestyle</a></li>
-                                        <li><a href="#">Food</a></li>
-                                        <li><a href="#">Nature</a></li>
-                                        <li><a href="#">photography</a></li>
+                                        <li class="active"><a href="{{route('index')}}">Ana Sayfa</a></li>
+                                        @foreach($categories as $category)
+                                            <li><a href="{{route('category_articles', $category->id)}}">{{$category->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
