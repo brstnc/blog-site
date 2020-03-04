@@ -11,11 +11,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $blog = Blog::where('statu', 1)->inRandomOrder() ->take(1)->get();
+        $random_blog = Blog::where('statu', 1)->inRandomOrder()->take(1)->get();
         $blogs = Blog::where('statu', 1)->orderBy('created_at', 'desc')->get()->groupBy('user_id');
-        View::share('blog', $blog);
+        View::share('random_blog', $random_blog);
         View::share('blogs', $blogs);
-        
+
         return view('front.index');
     }
 }
